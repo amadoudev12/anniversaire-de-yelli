@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joyeux Anniversaire 💜</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Particules et confettis -->
+    <div id="particles"></div>
+
+    <!-- Section d'accueil -->
+    <section class="hero">
+        <h1>Joyeux Anniversaire 💜 <br> mon amour, ma yelli</h1>
+        <!-- <p class="hero-subtitle">Une journée spéciale pour une personne extraordinaire ✨</p> -->
+        <button class="scroll-btn" onclick="scrollToCards()">Découvrir la surprise 🎁</button>
+    </section>
+
+    <!-- Section des cartes -->
+    <section class="cards-section" id="cards">
+        <h2 class="section-title">Messages d'amour pour toi 💜</h2>
+        <div class="cards-grid">
+            <div class="card-container">
+                <div class="card" onclick="flipCard(this)">
+                    <div class="card-face card-front">
+                        <div class="card-icon">🎁</div>
+                        <div class="card-title">Cadeau spécial</div>
+                    </div>
+                    <div class="card-face card-back">
+                        <p class="card-message">Je te souhaite plein de bonheur et que tous tes rêves se réalisent 💜✨</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <div class="card" onclick="flipCard(this)">
+                    <div class="card-face card-front">
+                        <div class="card-icon">💖</div>
+                        <div class="card-title">Avec amour</div>
+                    </div>
+                    <div class="card-face card-back">
+                        <p class="card-message">Que cette journée soit remplie de moments magiques et inoubliables 🌟</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <div class="card" onclick="flipCard(this)">
+                    <div class="card-face card-front">
+                        <div class="card-icon">🎂</div>
+                        <div class="card-title">Délicieux moments</div>
+                    </div>
+                    <div class="card-face card-back">
+                        <p class="card-message">Profite de chaque instant de cette belle journée qui t'es dédiée 🎉</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <div class="card" onclick="flipCard(this)">
+                    <div class="card-face card-front">
+                        <div class="card-icon">⭐</div>
+                        <div class="card-title">Brille toujours</div>
+                    </div>
+                    <div class="card-face card-back">
+                        <p class="card-message">Continue à illuminer le monde avec ta présence magnifique 💫</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <div class="card" onclick="flipCard(this)">
+                    <div class="card-face card-front">
+                        <div class="card-icon">🎈</div>
+                        <div class="card-title">Célébration</div>
+                    </div>
+                    <div class="card-face card-back">
+                        <p class="card-message">Que cette nouvelle année soit remplie de joie, santé et succès 🌈</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <div class="card" onclick="flipCard(this)">
+                    <div class="card-face card-front">
+                        <div class="card-icon">✨</div>
+                        <div class="card-title">Magie pure</div>
+                    </div>
+                    <div class="card-face card-back">
+                        <p class="card-message">Tu es quelqu'un d'exceptionnel et tu mérites le meilleur 💜🎊</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contrôle audio -->
+    <button class="audio-control" onclick="toggleMusic()" id="musicBtn">🎵</button>
+    <audio id="bgMusic" loop>
+        <source src="/Yelli/Dadju___Tayc_-_I_love_you__Clip_officiel_(48k).m4a" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Générer des confettis
+        function createConfetti() {
+            const colors = ['#ffd700', '#ffffff', '#b19cd9', '#ff69b4', '#87ceeb'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                confetti.style.animationDelay = Math.random() * 2 + 's';
+                confetti.style.opacity = Math.random();
+                document.body.appendChild(confetti);
+            }
+        }
+
+        // Générer des particules
+        function createParticles() {
+            const particles = document.getElementById('particles');
+            const symbols = ['💜', '✨', '🎉', '💫', '🌟', '💖'];
+            
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.top = Math.random() * 100 + 'vh';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                particles.appendChild(particle);
+            }
+        }
+
+        // Retourner les cartes
+        function flipCard(card) {
+            card.classList.toggle('flipped');
+        }
+
+        // Faire défiler vers les cartes
+        function scrollToCards() {
+            document.getElementById('cards').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+
+        // Contrôle de la musique
+        let musicPlaying = false;
+        function toggleMusic() {
+            const music = document.getElementById('bgMusic');
+            const btn = document.getElementById('musicBtn');
+            
+            if (musicPlaying) {
+                music.pause();
+                btn.textContent = '🎵';
+                musicPlaying = false;
+            } else {
+                music.play();
+                btn.textContent = '🔇';
+                musicPlaying = true;
+            }
+        }
+
+        // Initialisation
+        createConfetti();
+        createParticles();
+    </script>
+</body>
+</html>
